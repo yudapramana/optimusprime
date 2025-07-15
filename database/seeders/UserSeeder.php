@@ -92,6 +92,6 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        Student::factory()->count(1000)->create();
+        Student::factory()->count(100)->create();
     }
 }
