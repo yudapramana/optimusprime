@@ -16,10 +16,27 @@ class ThreeInstallmentCriteria extends Model
         'percentage',
     ];
 
+    protected $appends = [
+        'type_alias'
+    ];
+
     /**
      * Enum type values:
      * - start_date
      * - mid_date
      * - end_date
      */
+
+    /**
+     * Get alias name for type.
+     */
+    public function getTypeAliasAttribute()
+    {
+        return match ($this->type) {
+            'start_date' => 'awal_semester',
+            'mid_date'   => 'tengah_semester',
+            'end_date'   => 'akhir_semester',
+            default      => $this->type,
+        };
+    }
 }

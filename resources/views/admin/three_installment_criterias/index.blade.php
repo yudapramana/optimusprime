@@ -51,7 +51,7 @@
                 lengthChange: false, // ❌ Nonaktifkan dropdown jumlah data
                 ajax: "{{ route('admin.three_installment_criterias.index') }}",
                 columns: [{
-                        data: 'type',
+                        data: 'type_alias',
                         className: 'text-center'
                     },
                     {

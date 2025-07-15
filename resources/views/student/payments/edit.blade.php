@@ -75,10 +75,20 @@
                         @enderror
                     </div>
 
+                    {{-- Tanggal Transfer --}}
+                    <div class="form-group mb-3">
+                        <label for="transfer_date">Tanggal Transfer</label>
+                        <input type="date" name="transfer_date" id="transfer_date" class="form-control" value="{{ old('transfer_date', $payment->transfer_date ? $payment->transfer_date->format('Y-m-d') : '') }}" required>
+                        @error('transfer_date')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-upload"></i> Simpan Bukti Bayar
                     </button>
                 </form>
+
             </div>
         </div>
     </div>

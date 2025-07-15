@@ -19,6 +19,7 @@ class Payment extends Model
         'bank_id',
         'eviden_url',
         'upload_date',
+        'transfer_date',
         'due_date',
         'status',
         'notes',

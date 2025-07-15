@@ -11,9 +11,12 @@
 
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/" class="btn btn-primary ml-2">Home</a>
+                </li>
                 @guest
                     <li class="nav-item">
-                        <a href="login.html" class="btn btn-primary ml-2">Login</a>
+                        <a href="/login" class="btn btn-primary ml-2">Login</a>
                     </li>
                 @else
                     <li class="nav-item">

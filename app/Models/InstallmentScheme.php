@@ -13,6 +13,10 @@ class InstallmentScheme extends Model
         'scheme_name',
     ];
 
+    protected $appends = [
+        'scheme_label',
+    ];
+
     /**
      * Relasi ke tabel installments
      * Satu skema bisa digunakan oleh banyak cicilan mahasiswa

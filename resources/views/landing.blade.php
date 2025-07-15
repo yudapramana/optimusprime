@@ -123,9 +123,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contact">Kontak</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/login" class="btn btn-primary ml-2">Login</a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a href="/login" class="btn btn-primary ml-2">Login</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="btn btn-primary ml-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -141,8 +153,14 @@
                         <h1 class="display-4 font-weight-bold mb-4">Sistem Informasi Pelayanan Registrasi Mahasiswa Terintegrasi</h1>
                         <p class="lead mb-4">Solusi terpadu untuk memudahkan proses registrasi mahasiswa baru dengan sistem yang efisien dan terintegrasi.</p>
                         <div class="d-flex flex-wrap gap-2">
-                            <a href="/register" class="btn btn-light btn-lg">Registrasi</a>&nbsp;
-                            <a href="/login" class="btn btn-outline-light btn-lg">Login</a>
+
+                            @guest
+                                <a href="/register" class="btn btn-light btn-lg">Registrasi</a>&nbsp;
+                                <a href="/login" class="btn btn-outline-light btn-lg">Login</a>
+                            @else
+                                <a href="/student/home" class="btn btn-light btn-lg">Dashboard Mahasiswa</a>&nbsp;
+                            @endguest
+
                         </div>
                     </div>
                     <div class="col-lg-6 d-none d-lg-block">

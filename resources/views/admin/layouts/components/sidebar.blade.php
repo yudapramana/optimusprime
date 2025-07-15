@@ -58,7 +58,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item @if (Request::segment(2) == 'data') menu-open @endif">
+            {{-- <li class="nav-item @if (Request::segment(2) == 'data') menu-open @endif">
                 <a href="#" class="nav-link @if (Request::segment(2) == 'data') active @endif">
                     <i class="nav-icon fas fa-tools"></i>
                     <p>
@@ -74,7 +74,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="nav-header">VERIFICATION</li>
 
@@ -90,6 +90,23 @@
                     <p>Pembayaran</p>
                 </a>
             </li>
+
+
+            <li class="nav-header">REPORTS</li>
+            <li class="nav-item">
+                <a href={{ url('/admin/data/students') }} class="nav-link @if (Request::segment(2) == 'data' && Request::segment(3) == 'students') active @endif">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Mahasiswa</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href={{ url('/admin/data/payments') }} class="nav-link @if (Request::segment(2) == 'data' && Request::segment(3) == 'payments') active @endif">
+                    <i class="nav-icon fas fa-wallet"></i>
+                    <p>Pembayaran</p>
+                </a>
+            </li>
+
+
         </ul>
     </nav>
 </div>

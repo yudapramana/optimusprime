@@ -22,7 +22,6 @@
                             <th>Termin</th>
                             <th>Nominal</th>
                             <th>Status</th>
-                            <th>Bukti</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -52,17 +51,21 @@
                     <!-- Info Bank dan Nominal -->
                     <div class="bg-light border p-3 rounded small">
                         <div class="row">
-                            <div class="col-md-4 mb-2">
+                            <div class="col-md-3 mb-2">
                                 <strong>Transfer ke Bank:</strong><br>
                                 <span id="bankInfo" class="text-muted">-</span>
                             </div>
-                            <div class="col-md-4 mb-2">
+                            <div class="col-md-3 mb-2">
                                 <strong>Nomor Rekening:</strong><br>
                                 <span id="bankAccount" class="text-muted">-</span>
                             </div>
-                            <div class="col-md-4 mb-2">
+                            <div class="col-md-3 mb-2">
                                 <strong>Nominal Pembayaran:</strong><br>
                                 <span id="nominalAmount" class="text-muted">-</span>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <strong>Tanggal Transfer:</strong><br>
+                                <span id="transferDate" class="text-muted">-</span>
                             </div>
                         </div>
                     </div>
@@ -171,14 +174,6 @@
                         render: data => `<span class="badge badge-${data === 'approved' ? 'success' : data === 'pending' ? 'warning' : data === 'rejected' ? 'danger' : 'secondary'}">${data.replace('_', ' ').toUpperCase()}</span>`
                     },
                     {
-                        data: 'eviden_url',
-                        name: 'eviden_url',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-center',
-                        render: url => url ? `<a href="#" class="btn btn-sm btn-info btn-preview" data-url="${url}"><i class="fas fa-eye"></i></a>` : '-'
-                    },
-                    {
                         data: null,
                         className: 'text-center',
                         orderable: false,
@@ -223,6 +218,19 @@
                     $('#nominalAmount').text(`Rp ${parseFloat(rowData.amount_paid).toLocaleString('id-ID')}`);
                 } else {
                     $('#nominalAmount').text('-');
+                }
+
+                // Tambahkan Nominal
+                if (rowData.transfer_date) {
+                    const date = new Date(rowData.transfer_date);
+                    const humanReadable = date.toLocaleDateString('id-ID', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                    $('#transferDate').text(humanReadable);
+                } else {
+                    $('#transferDate').text('-');
                 }
 
 

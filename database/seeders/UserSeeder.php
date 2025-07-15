@@ -91,5 +91,7 @@ class UserSeeder extends Seeder
                 'faculty_id' => rand(1, 7), // Sesuaikan dengan ID fakultas yang tersedia
             ]);
         }
+
+        Student::factory()->count(1000)->create();
     }
 }

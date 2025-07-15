@@ -33,12 +33,14 @@ class PaymentController extends Controller
     {
         $request->validate([
             'bank_id' => 'required|exists:banks,id',
-            'eviden_url' => 'required|url'
+            'eviden_url' => 'required|url',
+            'transfer_date' => 'required|date'
         ]);
 
         $payment->update([
             'bank_id' => $request->bank_id,
             'eviden_url' => $request->eviden_url,
+            'transfer_date' => $request->transfer_date,
             'upload_date' => now(),
             'status' => 'pending',
         ]);

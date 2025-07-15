@@ -15,8 +15,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax() || $request->wantsJson()) {
-            $data = Student::select('id', 'nim', 'email', 'faculty_id', 'user_id')
-            ->where('account_status', 'verified')->with('faculty', 'user')->get();
+            $data = Student::where('account_status', 'verified')->with('faculty', 'user')->orderBy('faculty_id')->get();
             return response()->json(['data' => $data]);
         }
 

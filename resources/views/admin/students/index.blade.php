@@ -2,6 +2,9 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('/') }}plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endpush
 
 @section('content')
@@ -19,11 +22,15 @@
                     <thead class="text-center bg-light">
                         <tr>
                             <th>No</th>
+                            <th>Fakultas</th>
                             <th>Nama</th>
                             <th>NIM</th>
-                            <th>Email</th>
-                            <th>Fakultas</th>
-                            <th>Aksi</th>
+                            <th>Kontak</th> <!-- Email + No HP -->
+                            <th>JK</th>
+                            <th>TTL</th>
+                            <th>Tahun</th>
+                            <th>Semester</th>
+                            {{-- <th>Aksi</th> --}}
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -40,6 +47,16 @@
     <script src="{{ asset('/') }}plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('/') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('/') }}plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('/') }}plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('/') }}plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('/') }}plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('/') }}plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
     <script>
         $(function() {
@@ -48,10 +65,29 @@
                 autoWidth: false,
                 responsive: true,
                 serverSide: false,
-                searching: false,
+                searching: true,
                 paging: true,
-                info: false,
+                info: true,
                 lengthChange: false,
+                pageLength: 100,
+                dom: "<'row'<'col-md-6'B><'col-md-6'f>>" +
+                    "<'row'<'col-12'tr>>" +
+                    "<'row'<'col-md-5'i><'col-md-7'p>>",
+                buttons: [
+                    'copy',
+                    'excel',
+                    {
+                        extend: 'pdf',
+                        orientation: 'landscape', // ⬅️ Atur orientasi jadi landscape
+                        pageSize: 'A4',
+                        title: 'Daftar Mahasiswa',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'print',
+                    'colvis'
+                ],
                 ajax: {
                     url: "{{ route('admin.students.index') }}",
                     dataSrc: function(json) {
@@ -69,34 +105,72 @@
                         searchable: false
                     },
                     {
+                        data: 'faculty.name'
+                    },
+                    {
                         data: 'user.name'
                     },
                     {
                         data: 'nim'
                     },
                     {
-                        data: 'email'
+                        data: null,
+                        render: function(data) {
+                            return `<div style="line-height:1"><small>${data.email}</small> | <br><small>${data.phone_number}</small></div>`;
+                        }
                     },
+
                     {
-                        data: 'faculty.name'
+                        data: 'gender',
+                        className: 'text-center'
                     },
                     {
                         data: null,
-                        className: 'text-center',
-                        orderable: false,
-                        searchable: false,
                         render: function(data) {
-                            return `
-                    <button class="btn btn-sm btn-warning edit-btn" data-id="${data.id}">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger delete-btn" data-id="${data.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>`;
+                            return `<div style="line-height:1"><small>${data.birth_place}, <br> ${formatDate(data.birth_date)}</small></div>`;
                         }
-                    }
+                    },
+                    {
+                        data: 'enrollment_year',
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'entry_semester',
+                        className: 'text-center',
+                        render: data => data.charAt(0).toUpperCase() + data.slice(1)
+                    },
+                    //     {
+                    //         data: null,
+                    //         className: 'text-center',
+                    //         orderable: false,
+                    //         searchable: false,
+                    //         render: function(data) {
+                    //             return `<div class="d-flex align-items-center">
+                // <button class="btn btn-sm btn-warning edit-btn mr-1" data-id="${data.id}">
+                //     <i class="fas fa-edit"></i>
+                // </button>
+                // <button class="btn btn-sm btn-danger delete-btn" data-id="${data.id}">
+                //     <i class="fas fa-trash"></i>
+                // </button>
+                // </div>`;
+                    //         }
+                    //     }
                 ]
+
             });
+
+            // table.buttons().container().appendTo('#studentTable_wrapper .col-md-6:eq(0)');
+
+
+            function formatDate(dateStr) {
+                const date = new Date(dateStr);
+                const options = {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                };
+                return date.toLocaleDateString('id-ID', options); // ex: 15 Jul 2025
+            }
 
 
             // Tambah

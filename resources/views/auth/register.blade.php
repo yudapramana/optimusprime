@@ -84,7 +84,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                 </div>
-                                <input type="date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" required>
+                                <input type="date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" placeholder="Tanggal Lahir" required>
                             </div>
                             @error('birth_date')
                                 <span class="invalid-feedback d-block">{{ $message }}</span>
@@ -117,7 +117,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <input type="number" name="enrollment_year" class="form-control @error('enrollment_year') is-invalid @enderror" placeholder="Tahun Masuk" value="{{ old('enrollment_year', date('Y')) }}" required>
+                                <input type="number" name="enrollment_year" class="form-control @error('enrollment_year') is-invalid @enderror" placeholder="Tahun Masuk Kuliah" value="{{ old('enrollment_year', date('Y')) }}" required>
                             </div>
                             @error('enrollment_year')
                                 <span class="invalid-feedback d-block">{{ $message }}</span>

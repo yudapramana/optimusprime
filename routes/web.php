@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Verification\PaymentVerificationController;
 use App\Http\Controllers\Admin\Verification\StudentVerificationController;
 use App\Http\Controllers\Student\InstallmentController;
 use App\Http\Controllers\Student\PaymentController;
+use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,10 +68,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     Route::prefix('data')->group(function () {
         Route::resource('students', StudentController::class);
+        Route::get('payments', [AdminPaymentController::class, 'index'])->name('payments.index');
     });
 
     Route::prefix('verify')->group(function () {
-        Route::get('students/', [StudentVerificationController::class, 'index'])->name('students.verification');
+        Route::get('students/', [StudentVerificationController::class, 'index'])->name('students.verification.index');
         Route::put('students/{student}', [StudentVerificationController::class, 'update'])->name('students.verification.update');
 
         Route::get('/payments', [PaymentVerificationController::class, 'index'])->name('payments.verification.index');
