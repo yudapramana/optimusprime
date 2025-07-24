@@ -32,35 +32,16 @@
 
         .signature {
             margin-top: 40px;
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            /* posisikan di kanan halaman */
+            text-align: right;
         }
 
-        .signature-inner {
-            text-align: center;
-            /* isi signature rata tengah terhadap dirinya */
+        .signature p {
+            margin-bottom: 60px;
         }
 
-        .signature-inner p {
-            margin-bottom: 0;
-        }
-
-        .signature-inner img {
-            width: 150px;
-            height: auto;
-            /* margin-top: -20px; */
-            /* iris ke atas */
-            /* margin-bottom: -10px; */
-            /* iris ke bawah */
-            opacity: 0.8;
-        }
-
-        .signature-name {
+        .title {
             font-weight: bold;
-            text-decoration: underline;
-            margin-top: 0;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -112,11 +93,8 @@
         </table>
 
         <div class="signature">
-            <div class="signature-inner">
-                <p>{{ $position }}</p>
-                <img src="{{ $ttd_url }}" alt="TTD">
-                <div class="signature-name">{{ $nama_terang }}</div>
-            </div>
+            <p>Petugas Administrasi</p>
+            <strong>(_________________)</strong>
         </div>
     </div>
 </body>

@@ -55,6 +55,12 @@
                             <p>Master Cicilan</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/master/receipt_signatures') }}" class="nav-link @if (Request::segment(2) == 'master' && Request::segment(3) == 'receipt_signatures') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Master TTD</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

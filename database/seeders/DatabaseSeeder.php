@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             BankSeeder::class,
             InstallmentSchemeSeeder::class,
             ThreeInstallmentCriteriaSeeder::class,
+            ReceiptSignatureSeeder::class
         ]);
 
         

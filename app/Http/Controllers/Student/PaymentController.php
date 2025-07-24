@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use App\Models\Payment;
+use App\Models\ReceiptSignature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,8 +52,18 @@ class PaymentController extends Controller
     public function generateReceipt($id)
     {
         $payment = \App\Models\Payment::with(['installment.user.student', 'bank'])->findOrFail($id);
+        // $ttd_url = "http://res.cloudinary.com/dezj1x6xp/image/upload/v1753371206/PandanViewMandeh/TTD_KEMENAG_ABRAR_ski7xk.png";
+        // $nama_terang = "Dr. H. ABRAR MUNANDA, M.A";
+        $ttd_default = "https://st2.depositphotos.com/1054979/7429/v/450/depositphotos_74293633-stock-illustration-digital-signature.jpg";
+        $signature = ReceiptSignature::where('is_active', true)->first();
 
-        return view('admin.payments.receipt', compact('payment'));
+        // return $signature;
+        return view('admin.payments.receipt', [
+            'payment' => $payment,
+            'ttd_url' => $signature->signature_url ?? $ttd_default,
+            'nama_terang' => $signature->name ?? 'belum diset',
+            'position' => $signature->position ?? 'Petugas Administrasi',
+        ]);
     }
 
 }

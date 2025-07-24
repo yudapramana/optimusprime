@@ -39,6 +39,7 @@ class UserSeeder extends Seeder
                 'address' => 'Jl. Merdeka No. 1, Bandung',
                 'enrollment_year' => 2023,
                 'entry_semester' => 'ganjil',
+                'account_status' => 'verified'
             ],
             [
                 'name' => 'Siti Nurhaliza',
@@ -51,6 +52,7 @@ class UserSeeder extends Seeder
                 'address' => 'Jl. Mawar No. 5, Surabaya',
                 'enrollment_year' => 2023,
                 'entry_semester' => 'ganjil',
+                'account_status' => 'verified'
             ],
             [
                 'name' => 'Rizky Ramadhan',
@@ -63,6 +65,7 @@ class UserSeeder extends Seeder
                 'address' => 'Jl. Kaliurang KM 7, Yogyakarta',
                 'enrollment_year' => 2023,
                 'entry_semester' => 'ganjil',
+                'account_status' => 'verified'
             ],
         ];
 
@@ -92,6 +95,6 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        Student::factory()->count(100)->create();
+        Student::factory()->count(3)->create();
     }
 }

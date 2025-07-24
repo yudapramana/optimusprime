@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Verification\StudentVerificationController;
 use App\Http\Controllers\Student\InstallmentController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
+use App\Http\Controllers\Admin\ReceiptSignatureController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +64,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::resource('faculties', FacultyController::class);
         Route::resource('banks', BankController::class);
         Route::resource('three_installment_criterias', App\Http\Controllers\Admin\ThreeInstallmentCriteriaController::class)->except(['show']);
+        Route::resource('receipt_signatures', ReceiptSignatureController::class)->except(['show'])->names('receipt_signatures');
 
     });
 
