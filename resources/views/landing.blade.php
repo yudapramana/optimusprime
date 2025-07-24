@@ -158,7 +158,7 @@
                                 <a href="/register" class="btn btn-light btn-lg">Registrasi</a>&nbsp;
                                 <a href="/login" class="btn btn-outline-light btn-lg">Login</a>
                             @else
-                                <a href="/student/home" class="btn btn-light btn-lg">Dashboard Mahasiswa</a>&nbsp;
+                                <a href="/student/home" class="btn btn-light btn-lg">Dashboard</a>&nbsp;
                             @endguest
 
                         </div>
