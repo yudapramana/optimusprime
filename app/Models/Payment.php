@@ -18,6 +18,7 @@ class Payment extends Model
         'amount_paid',
         'bank_id',
         'eviden_url',
+        'receipt_number',
         'upload_date',
         'transfer_date',
         'due_date',

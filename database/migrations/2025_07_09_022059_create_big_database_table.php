@@ -98,6 +98,7 @@ return new class extends Migration
             $table->decimal('amount_paid', 12, 2)->nullable();
             $table->unsignedInteger('bank_id')->nullable();
             $table->string('eviden_url')->nullable();
+            $table->string('receipt_number')->nullable();
             $table->date('transfer_date')->nullable();
             $table->date('upload_date')->nullable();
             $table->date('due_date');

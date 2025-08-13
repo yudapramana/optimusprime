@@ -35,13 +35,24 @@ class PaymentController extends Controller
         $request->validate([
             'bank_id' => 'required|exists:banks,id',
             'eviden_url' => 'required|url',
-            'transfer_date' => 'required|date'
+            'transfer_date' => 'required|date',
+            'receipt_number' => 'required|unique:payments,receipt_number',
+        ], [
+            'receipt_number.required' => 'Nomor resi wajib diisi.',
+            'receipt_number.unique'   => 'Nomor resi tersebut sudah terdaftar, silakan gunakan nomor lain.',
+
+            'eviden_url.required' => 'Tautan bukti transfer wajib diisi.',
+            'eviden_url.url'      => 'Tautan bukti transfer harus berupa URL yang valid.',
+
+            'transfer_date.required' => 'Tanggal transfer wajib diisi.',
+            'transfer_date.date'     => 'Tanggal transfer harus berupa tanggal yang valid.',
         ]);
 
         $payment->update([
             'bank_id' => $request->bank_id,
             'eviden_url' => $request->eviden_url,
             'transfer_date' => $request->transfer_date,
+            'receipt_number' => $request->receipt_number,
             'upload_date' => now(),
             'status' => 'pending',
         ]);

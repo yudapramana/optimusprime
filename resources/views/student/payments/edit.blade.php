@@ -75,6 +75,15 @@
                         @enderror
                     </div>
 
+                    {{-- Nomor Resi --}}
+                    <div class="form-group mb-3">
+                        <label for="receipt_number">Nomor Resi</label>
+                        <input type="text" name="receipt_number" id="receipt_number" class="form-control" value="{{ old('receipt_number', $payment->receipt_number ? $payment->receipt_number : '') }}" required>
+                        @error('receipt_number')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     {{-- Tanggal Transfer --}}
                     <div class="form-group mb-3">
                         <label for="transfer_date">Tanggal Transfer</label>

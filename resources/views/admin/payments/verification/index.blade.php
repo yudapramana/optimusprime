@@ -55,10 +55,10 @@
                                 <strong>Transfer ke Bank:</strong><br>
                                 <span id="bankInfo" class="text-muted">-</span>
                             </div>
-                            <div class="col-md-3 mb-2">
+                            {{-- <div class="col-md-3 mb-2">
                                 <strong>Nomor Rekening:</strong><br>
                                 <span id="bankAccount" class="text-muted">-</span>
-                            </div>
+                            </div> --}}
                             <div class="col-md-3 mb-2">
                                 <strong>Nominal Pembayaran:</strong><br>
                                 <span id="nominalAmount" class="text-muted">-</span>
@@ -66,6 +66,10 @@
                             <div class="col-md-3 mb-2">
                                 <strong>Tanggal Transfer:</strong><br>
                                 <span id="transferDate" class="text-muted">-</span>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <strong>Nomor Resi:</strong><br>
+                                <span id="receiptNumber" class="text-muted">-</span>
                             </div>
                         </div>
                     </div>
@@ -206,8 +210,10 @@
 
                 // Info Bank
                 if (rowData.bank) {
-                    $('#bankInfo').text(`${rowData.bank.bank_name} a.n ${rowData.bank.account_name}`);
-                    $('#bankAccount').text(rowData.bank.account_number);
+                    $('#bankInfo').html(`${rowData.bank.account_number} <br> ${rowData.bank.bank_name} a.n ${rowData.bank.account_name}`);
+
+                    // $('#bankAccount').text(rowData.bank.account_number);
+                    $('#receiptNumber').text(rowData.receipt_number);
                 } else {
                     $('#bankInfo').text('-');
                     $('#bankAccount').text('-');

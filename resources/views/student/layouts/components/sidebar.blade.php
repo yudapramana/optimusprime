@@ -44,7 +44,7 @@
                     <li class="nav-item">
                         <a href="{{ url('/admin/master/banks') }}" class="nav-link @if (Request::segment(2) == 'master' && Request::segment(3) == 'banks') active @endif">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Akun Bank</p>
+                            <p>Rekening Bank</p>
                         </a>
                     </li>
                     {{-- <li class="nav-item">

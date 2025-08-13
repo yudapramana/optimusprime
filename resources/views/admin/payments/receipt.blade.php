@@ -111,13 +111,13 @@
             </tr>
         </table>
 
-        <div class="signature">
+        {{-- <div class="signature">
             <div class="signature-inner">
                 <p>{{ $position }}</p>
                 <img src="{{ $ttd_url }}" alt="TTD">
                 <div class="signature-name">{{ $nama_terang }}</div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </body>
 
