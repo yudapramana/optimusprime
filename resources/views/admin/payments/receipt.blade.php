@@ -102,6 +102,10 @@
                 <td>: {{ \Carbon\Carbon::parse($payment->upload_date)->translatedFormat('d F Y') }}</td>
             </tr>
             <tr>
+                <td>Nomor Resi</td>
+                <td>: {{ $payment->receipt_number }}</td>
+            </tr>
+            <tr>
                 <td>Bank Tujuan</td>
                 <td>: {{ $payment->bank->bank_name ?? '-' }} ({{ $payment->bank->account_number ?? '-' }})</td>
             </tr>
